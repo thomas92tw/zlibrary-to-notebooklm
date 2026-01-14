@@ -1,257 +1,261 @@
 # 📚 Z-Library to NotebookLM
 
-> 一键将 Z-Library 书籍自动下载并上传到 Google NotebookLM
+[English](README.md) | [简体中文](README.zh-CN.md)
 
----
-
-## ⚠️ 重要免责声明
-
-**本项目仅供学习、研究和技术演示用途。请严格遵守当地法律法规及版权规定，仅用于：**
-
-- ✅ 你拥有合法访问权限的资源
-- ✅ 公共领域或开源许可的文档（如 arXiv、Project Gutenberg）
-- ✅ 个人拥有版权或已获授权的内容
-
-**作者不鼓励、不支持任何形式的版权侵权行为，不承担任何法律责任。使用风险自负。**
-
-**请尊重知识产权，支持正版阅读！**
-
----
+> Automatically download books from Z-Library and upload them to Google NotebookLM with one command.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Claude Skill](https://img.shields.io/badge/Claude-Skill-success.svg)](https://claude.ai/claude-code)
 
-## ✨ 特性
+---
 
-- 🔐 **一次登录，永久使用** - 类似 `notebooklm login` 的体验
-- 📥 **智能下载** - 优先 PDF（保留排版），自动降级 EPUB → TXT
-- 🤖 **全自动化** - 一条命令完成整个流程
-- 🎯 **格式自适应** - 自动检测并处理多种格式（PDF、EPUB、MOBI 等）
-- 📊 **进度可视化** - 实时显示下载和转换进度
+## ⚠️ Important Disclaimer
 
-## 🎯 作为 Claude Skill 使用（推荐）
+**This project is for educational, research, and technical demonstration purposes only. Please strictly comply with local laws and copyright regulations. Use only for:**
 
-### Claude Skill 安装
+- ✅ Resources you have legal access to
+- ✅ Public domain or open-source licensed documents (e.g., arXiv, Project Gutenberg)
+- ✅ Content you personally own or have authorization to use
+
+**The author does not encourage or support any form of copyright infringement and assumes no legal liability. Use at your own risk.**
+
+**Please respect intellectual property rights and support authorized reading!**
+
+---
+
+## ✨ Features
+
+- 🔐 **One-time Login, Forever Use** - Similar to `notebooklm login` experience
+- 📥 **Smart Download** - Prioritizes PDF (preserves formatting), auto-fallback to EPUB → TXT
+- 🤖 **Fully Automated** - Complete workflow with a single command
+- 🎯 **Format Adaptive** - Automatically detects and processes multiple formats (PDF, EPUB, MOBI, etc.)
+- 📊 **Visual Progress** - Real-time display of download and conversion progress
+
+## 🎯 Use as Claude Skill (Recommended)
+
+### Installation
 
 ```bash
-# 1. 进入 Claude Skills 目录
+# 1. Navigate to Claude Skills directory
 cd ~/.claude/skills  # Windows: %APPDATA%\Claude\skills
 
-# 2. 克隆仓库
+# 2. Clone the repository
 git clone https://github.com/zstmfhy/zlibrary-to-notebooklm.git zlib-to-notebooklm
 
-# 3. 完成首次登录
+# 3. Complete initial login
 cd zlib-to-notebooklm
 python3 scripts/login.py
 ```
 
-### 使用方式
+### Usage
 
-安装后，在 Claude Code 中直接说：
+After installation, simply tell Claude Code:
 
 ```text
-用 zlib-to-notebooklm skill 处理这个 Z-Library 链接：
-https://zh.zlib.li/book/25314781/aa05a1/钱的第四维
+Use zlib-to-notebooklm skill to process this Z-Library link:
+https://zh.zlib.li/book/25314781/aa05a1/book-title
 ```
 
-Claude 会自动：
+Claude will automatically:
 
-- 下载书籍（优先 PDF）
-- 创建 NotebookLM 笔记本
-- 上传文件
-- 返回笔记本 ID
-- 建议后续问题
+- Download the book (prioritizing PDF)
+- Create NotebookLM notebook
+- Upload the file
+- Return notebook ID
+- Suggest follow-up questions
 
 ---
 
-## 🛠️ 传统方式安装
+## 🛠️ Traditional Installation
 
-### 1. 安装依赖
+### 1. Install Dependencies
 
 ```bash
-# 克隆仓库
+# Clone repository
 git clone https://github.com/zstmfhy/zlibrary-to-notebooklm.git
 cd zlibrary-to-notebooklm
 
-# 安装 Python 依赖
+# Install Python dependencies
 pip install playwright ebooklib
 
-# 安装 Playwright 浏览器
+# Install Playwright browser
 playwright install chromium
 ```
 
-### 2. 登录 Z-Library（仅需一次）
+### 2. Login to Z-Library (One-time Only)
 
 ```bash
 python3 scripts/login.py
 ```
 
-**操作步骤：**
-1. 浏览器会自动打开并访问 Z-Library
-2. 在浏览器中完成登录
-3. 登录成功后，回到终端按 **ENTER**
-4. 会话状态已保存！
+**Steps:**
+1. Browser will automatically open and visit Z-Library
+2. Complete login in the browser
+3. Return to terminal and press **ENTER**
+4. Session saved!
 
-### 3. 下载并上传书籍
+### 3. Download and Upload Books
 
 ```bash
 python3 scripts/upload.py "https://zh.zlib.li/book/..."
 ```
 
-**自动完成：**
-- ✅ 使用已保存的会话登录
-- ✅ 优先下载 PDF（保留排版）
-- ✅ 自动降级 EPUB → TXT
-- ✅ 创建 NotebookLM 笔记本
-- ✅ 上传内容
-- ✅ 返回笔记本 ID
+**Automatically completes:**
+- ✅ Login using saved session
+- ✅ Download PDF (preserves formatting)
+- ✅ Fallback to EPUB → TXT
+- ✅ Create NotebookLM notebook
+- ✅ Upload content
+- ✅ Return notebook ID
 
-## 📖 使用示例
+## 📖 Usage Examples
 
-### 基本用法
+### Basic Usage
 
 ```bash
-# 下载单本书籍
+# Download single book
 python3 scripts/upload.py "https://zh.zlib.li/book/12345/..."
 ```
 
-### 批量处理
+### Batch Processing
 
 ```bash
-# 批量下载多本书
+# Batch download multiple books
 for url in "url1" "url2" "url3"; do
     python3 scripts/upload.py "$url"
 done
 ```
 
-### 使用 NotebookLM
+### Using NotebookLM
 
 ```bash
-# 上传完成后，使用笔记本
-notebooklm use <返回的笔记本ID>
+# After upload, use the notebook
+notebooklm use <returned-notebook-id>
 
-# 开始提问
-notebooklm ask "这本书的核心观点是什么？"
-notebooklm ask "总结第3章的内容"
+# Start asking questions
+notebooklm ask "What are the core concepts of this book?"
+notebooklm ask "Summarize Chapter 3"
 ```
 
-## 🔄 工作流程
+## 🔄 Workflow
 
 ```
 Z-Library URL
     ↓
-1. 启动浏览器（使用已保存的会话）
+1. Launch browser (using saved session)
     ↓
-2. 访问书籍页面
+2. Visit book page
     ↓
-3. 智能选择格式：
-   - 优先 PDF（保留排版）
-   - 备选 EPUB（转换为纯文本）
-   - 其他格式（自动转换）
+3. Smart format selection:
+   - Priority: PDF (preserves formatting)
+   - Fallback: EPUB (convert to plain text)
+   - Other formats (auto-convert)
     ↓
-4. 下载文件到 ~/Downloads
+4. Download to ~/Downloads
     ↓
-5. 格式处理：
-   - PDF → 直接使用
-   - EPUB → 转换为 TXT
+5. Format processing:
+   - PDF → Use directly
+   - EPUB → Convert to TXT
     ↓
-6. 创建 NotebookLM 笔记本
+6. Create NotebookLM notebook
     ↓
-7. 上传内容
+7. Upload content
     ↓
-8. 返回笔记本 ID ✅
+8. Return notebook ID ✅
 ```
 
-## 📁 项目结构
+## 📁 Project Structure
 
 ```
 zlibrary-to-notebooklm/
-├── SKILL.md              # Skill 核心定义（必需）
-├── README.md             # 项目文档
-├── LICENSE               # MIT 许可证
-├── package.json          # npm 配置（用于 Claude Code skill）
-├── skill.yaml            # Skill 定义
-├── requirements.txt      # Python 依赖
-├── scripts/              # 可执行脚本（官方标准）
-│   ├── login.py         # 登录脚本
-│   ├── upload.py        # 下载+上传脚本
-│   └── convert_epub.py  # EPUB 转换工具
-├── docs/                 # 文档
-│   ├── WORKFLOW.md      # 工作流程详解
-│   └── TROUBLESHOOTING.md # 故障排除
-└── INSTALL.md            # 安装指南
+├── SKILL.md              # Core Skill definition (required)
+├── README.md             # Project documentation
+├── README.zh-CN.md       # Chinese documentation
+├── LICENSE               # MIT License
+├── package.json          # npm config (for Claude Code skill)
+├── skill.yaml            # Skill configuration
+├── requirements.txt      # Python dependencies
+├── scripts/              # Executable scripts (official standard)
+│   ├── login.py         # Login script
+│   ├── upload.py        # Download + Upload script
+│   └── convert_epub.py  # EPUB conversion tool
+├── docs/                 # Documentation
+│   ├── WORKFLOW.md      # Workflow details
+│   └── TROUBLESHOOTING.md # Troubleshooting guide
+└── INSTALL.md            # Installation guide
 ```
 
-## 🔧 配置文件
+## 🔧 Configuration
 
-所有配置保存在 `~/.zlibrary/` 目录：
+All configurations are saved in `~/.zlibrary/` directory:
 
 ```
 ~/.zlibrary/
-├── storage_state.json    # 登录会话（cookies）
-├── browser_profile/      # 浏览器数据
-└── config.json          # 账号配置（备用）
+├── storage_state.json    # Login session (cookies)
+├── browser_profile/      # Browser data
+└── config.json          # Account config (backup)
 ```
 
-## 🛠️ 依赖项
+## 🛠️ Dependencies
 
 - **Python 3.8+**
-- **playwright** - 浏览器自动化
-- **ebooklib** - EPUB 文件处理
-- **NotebookLM CLI** - Google NotebookLM 命令行工具
+- **playwright** - Browser automation
+- **ebooklib** - EPUB file processing
+- **NotebookLM CLI** - Google NotebookLM command-line tool
 
-## 📝 命令参考
+## 📝 Command Reference
 
-### 登录
+### Login
 
 ```bash
 python3 scripts/login.py
 ```
 
-### 上传
+### Upload
 
 ```bash
 python3 scripts/upload.py <Z-Library URL>
 ```
 
-### 查看会话状态
+### Check Session Status
 
 ```bash
 ls -lh ~/.zlibrary/storage_state.json
 ```
 
-### 重新登录
+### Re-login
 
 ```bash
 rm ~/.zlibrary/storage_state.json
 python3 scripts/login.py
 ```
 
-## 🤝 贡献
+## 🤝 Contributing
 
-欢迎贡献！请随时提交 Pull Request。
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启 Pull Request
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📄 许可证
+## 📄 License
 
-本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
-## 🙏 致谢
+## 🙏 Acknowledgments
 
-- [Z-Library](https://zh.zlib.li/) - 世界上最大的数字图书馆
-- [Google NotebookLM](https://notebooklm.google.com/) - AI 驱动的笔记工具
-- [Playwright](https://playwright.dev/) - 强大的浏览器自动化工具
+- [Z-Library](https://zh.zlib.li/) - World's largest digital library
+- [Google NotebookLM](https://notebooklm.google.com/) - AI-powered note-taking tool
+- [Playwright](https://playwright.dev/) - Powerful browser automation tool
 
-## 📮 联系方式
+## 📮 Contact
 
-- GitHub Issues: [提交问题](https://github.com/your-username/zlibrary-to-notebooklm/issues)
-- 讨论区: [GitHub Discussions](https://github.com/your-username/zlibrary-to-notebooklm/discussions)
+- GitHub Issues: [Submit issues](https://github.com/zstmfhy/zlibrary-to-notebooklm/issues)
+- Discussions: [GitHub Discussions](https://github.com/zstmfhy/zlibrary-to-notebooklm/discussions)
 
 ---
 
-**⭐ 如果这个项目对你有帮助，请给个 Star！**
+**⭐ If this project helps you, please give it a Star!**
