@@ -1,0 +1,41 @@
+# Z-Library Workflow Configuration
+# 自動化書籍研究工作流配置檔
+
+# 下載設定
+download:
+  output_dir: ~/Desktop/Z-Library
+  books_subdir: Books
+  reports_subdir: Reports
+  delay_between_books: 5  # 每本書間隔秒數（避免觸發限速）
+  max_retries: 3
+  preferred_format: pdf  # 優先格式：pdf, epub
+  fallback_format: epub
+
+# 搜尋設定
+search:
+  max_results: 5  # 推薦書籍數量
+  language_priority:
+    - zh  # 繁體/簡體中文
+    - en  # 英文
+  sort_by: relevance  # relevance, downloads, year
+
+# 分析設定
+analysis:
+  max_pages: 50  # 提取前 N 頁進行分析
+  questions_count: 5  # 生成的核心問題數量
+  output_format: markdown
+  include_metadata: true  # 包含書籍元數據
+
+# Obsidian 同步設定
+obsidian:
+  vault_path: /Users/thomastseng/Documents/note_2026
+  subfolder: Z-Library
+  create_index: true  # 自動生成研究索引頁
+  index_filename: _研究索引.md
+
+# NotebookLM 設定（目前 CLI 有問題，僅供參考）
+notebooklm:
+  web_url: https://notebooklm.google.com/
+  auto_upload: false  # 目前關閉，需手動上傳
+  generate_podcast: false
+  generate_quiz: false

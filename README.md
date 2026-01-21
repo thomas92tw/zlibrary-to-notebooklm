@@ -20,18 +20,41 @@
 
 **The author does not encourage or support any form of copyright infringement and assumes no legal liability. Use at your own risk.**
 
-**Please respect intellectual property rights and support authorized reading!**
+# Z-Library to NotebookLM (Smart Research Assistant v2.1)
 
----
+Automated workflow to search, download, and analyze books from Z-Library, integrating seamlessly with Obsidian and Google NotebookLM.
 
-## ✨ Features
+## ✨ v2.1 New Features
+- **Smart Folders**: Automatically separates PDFs (`Books/`) and Analysis Reports (`Reports/Markdown/`).
+- **Library Sync**: Automatically adds downloaded books to your Z-Library "My Library".
+- **Format Auto-Convert**: Prioritizes PDF; automatically triggers "Convert to PDF" if only EPUB is available.
+- **Scan Detection**: Detects scanned PDFs (no text layer) and prompts for NotebookLM OCR.
 
-- 🔐 **One-time Login, Forever Use** - Similar to `notebooklm login` experience
-- 📥 **Smart Download** - Prioritizes PDF (preserves formatting), auto-fallback to EPUB → Markdown
-- 📦 **Smart Chunking** - Large files auto-split (>350k words) for reliable CLI upload
-- 🤖 **Fully Automated** - Complete workflow with a single command
-- 🎯 **Format Adaptive** - Automatically detects and processes multiple formats (PDF, EPUB, MOBI, etc.)
-- 📊 **Visual Progress** - Real-time display of download and conversion progress
+## 🚀 Workflow
+
+1.  **Smart Search**: `python3 scripts/search_books.py "topic" --limit 5`
+2.  **Batch Download**: `python3 scripts/batch_download.py --urls search_results.json`
+3.  **Auto Analysis**: `python3 scripts/analyze_book.py book.pdf`
+4.  **Obsidian Sync**: `python3 scripts/sync_obsidian.py`
+5.  **NotebookLM Loop**: Upload PDFs to NotebookLM for deep analysis.
+
+## 📂 Directory Structure
+```
+~/Desktop/Z-Library/
+├── Books/                  # Downloaded PDFs
+└── Reports/
+    ├── Markdown/           # Analysis Reports (sync to Obsidian)
+    └── Text/               # Raw Text Content
+```
+
+## 🛠️ Setup
+1.  Clone this repo.
+2.  Install dependencies: `pip install -r requirements.txt`
+3.  Login: `python3 scripts/login.py`
+4.  Config: Edit `config.yaml` as needed.
+
+## ⚠️ Disclaimer
+This tool is for educational and research purposes only. Please respect copyright laws and Z-Library's terms of service.
 
 ## 🎯 Use as Claude Skill (Recommended)
 
